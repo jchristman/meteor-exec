@@ -1,0 +1,12 @@
+<body>
+{{> cmd}}
+</body>
+
+<template name="cmd">
+<textarea rows="30" cols="70">{{#each console}}
+{{data}}{{/each}}</textarea>
+<form class='cmd'>
+    <label for="cmd">Command:</label><input name="cmd" id="cmd" type="text" placeholder="Type your command" />
+    <button type="submit" id="submit">Submit</button>
+</form>
+</template>
