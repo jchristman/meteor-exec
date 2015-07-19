@@ -1,6 +1,6 @@
 Package.describe({
   name: 'jchristman:exec',
-  summary: 'A simple API for executing server-side command line scripts and reading the stdout/stdin from those scripts.',
+  summary: 'A simple API for executing server-side commands and w/ stdout/stdin reading',
   version: '1.0.0',
   git: 'https://github.com/jchristman/meteor-exec'
 });
