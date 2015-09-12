@@ -1,6 +1,6 @@
 meteor-exec
 ===========
-A library to simplify exec calls in meteor
+A library to simplify exec calls in meteor. Check out the live example at http://exec.meteor.com/
 
 Server-Side Usage
 =================
