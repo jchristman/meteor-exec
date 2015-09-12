@@ -9,11 +9,12 @@ There is a server side variable called Exec. To run a command line program, just
 Exec.run('ls', ['-al','/*'], stdoutHandler, stderrHandler);
 ```
 
-This is the equivalent of running ```ls -al /*``` from a shell. Alternatively, the following series of commands works well.
+This is the equivalent of running ```ls -al /*``` from a shell. Exec.run can also handle no arguments array and just including everything in the first argument. Like so:
 ```js
-var cmd = 'ls -al /*'.split(' ');
-Exec.run(cmd[0], cmd.slice(1, cmd.length), stdoutHandler, stderrHandler)
+Exec.run('ls -al /*', stdoutHandler, stderrHandler)
 ```
+
+*Note that this function is very stupid*. It splits the string on spaces so if you have something in quotes with spaces, do the array thing instead.
 
 See the example in the github respository for some example stdoutHandler and stderrHandler functions (line 50 of exec.js)[https://github.com/jchristman/meteor-exec/blob/master/exec.js#L50]. You then just pass this function handler to the Exec.run instance.
 

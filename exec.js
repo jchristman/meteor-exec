@@ -5,6 +5,15 @@ if (Meteor.isServer) {
 
     Exec.allowClientCalls = false; // Change this to true to make the Meteor.methods('exec','') work
     Exec.run = function (command, args, stdoutHandler, stderrHandler) {
+        if (typeof args === 'function' && typeof stdoutHandler === 'function' && stderrHandler === undefined) {
+            stderrHandler = stdoutHandler;
+            stdoutHandler = args;
+
+            command = command.split(' ');
+            args = command.splice(1, command.length);
+            command = command[0];
+        }
+
         var proc = Process.spawn(command, args, {
             detached : true,
             stdio : ['pipe', 'pipe', 'pipe']
@@ -34,8 +43,7 @@ if (Meteor.isServer) {
         exec : function(cmd, args) {
             if (Exec.allowClientCalls) {
                 if (args === undefined) {
-                    cmd = cmd.split(' ')
-                    return Exec.run(cmd[0], cmd.slice(1, cmd.length), Exec.Console.Insert, Exec.Console.Insert);
+                    return Exec.run(cmd, Exec.Console.Insert, Exec.Console.Insert);
                 } else {
                     return Exec.run(cmd, args.split(' '), Exec.Console.Insert, Exec.Console.Insert);
                 }
